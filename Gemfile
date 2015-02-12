@@ -7,6 +7,7 @@ gem 'geokit'
 gem 'timezone'
 gem 'nearest_time_zone'
 gem 'lita-gems'
+gem 'lita-xkcd'
 
 # Uncomment to use the HipChat adapter
 # gem "lita-hipchat"
