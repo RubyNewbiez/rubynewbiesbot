@@ -1,1 +1,1 @@
-web: bundle exec ruby lita
+web: bundle exec lita
