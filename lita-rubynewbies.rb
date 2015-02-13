@@ -22,7 +22,7 @@ module Lita
 
       def greet(payload)
         target = Source.new(room: "C03B4MKPS")
-        robot.send_message(target, "Hello #{payload[:user]}!")
+        robot.send_message(target, "Hello @#{payload[:user]} !")
       end
       
       
@@ -32,10 +32,15 @@ module Lita
         msg_next_meetup(timezone_name, user)
       end
       
+      def next_meetup_date
+        date = Date.parse("wednesday")
+        delta = date > Date.today ? 0 : 7
+        date + delta
+      end
+      
       def msg_next_meetup(city, user)
         timezone = Timezone::Zone.new :zone => city
-        
-        next_date = timezone.time_with_offset(Time.new(2015, 02, 18, 22))
+        next_date = timezone.time_with_offset(Time.new(next_meetup_date.year, next_meetup_date.month, next_meetup_date.day, 22))
         
         rest = next_date - timezone.time_with_offset(Time.now)
         mm, ss = rest.divmod(60)
