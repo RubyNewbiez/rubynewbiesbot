@@ -35,8 +35,19 @@ module Lita
         hh, mm = mm.divmod(60)
         dd, hh = hh.divmod(24)
         
-        return "Hey @#{user} our next meetup will take place on #{next_date.strftime("%F %H:%M")} (Your Timezone: #{city}). \n Thats only %d day, %d hours and %d minutes left :thumbsup:" % [dd, hh, mm]
+        return "Hey @#{user} our next meetup will take place on #{next_date.strftime("%F %H:%M")} (Your Timezone: #{city}). \n Thats only #{pluralize(dd,"day")}, #{pluralize(hh,"hour")} and #{pluralize(mm,"minute")} left :thumbsup:"
       end
+      
+      def pluralize(n, singular, plural=nil)
+        if n == 1
+          "1 #{singular}"
+        elsif plural
+          "#{n} #{plural}"
+        else
+          "#{n} #{singular}s"
+        end
+      end
+      
     end
     Lita.register_handler(RubyNewbies)
   end
