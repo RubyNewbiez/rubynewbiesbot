@@ -21,7 +21,7 @@ module Lita
       on :team_join, :greet
 
       def greet(payload)
-        target = Source.new(room: "#general")
+        target = Source.new(room: "C03B4MKPS")
         robot.send_message(target, "Hello #{payload[:user]}!")
       end
       
