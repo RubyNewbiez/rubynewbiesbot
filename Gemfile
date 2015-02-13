@@ -2,7 +2,8 @@ source "https://rubygems.org"
 ruby "2.2.0"
 
 gem "lita"
-gem "lita-slack"
+gem "lita-slack", :git => 'git://github.com/sudden-break/lita-slack.git'
+#gem 'lita-slack'
 gem 'geokit'
 gem 'timezone'
 gem 'nearest_time_zone'

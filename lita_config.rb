@@ -23,4 +23,4 @@ Lita.configure do |config|
     config.adapters.slack.token = ""
     config.robot.adapter = :shell
   end
-  end
+end
