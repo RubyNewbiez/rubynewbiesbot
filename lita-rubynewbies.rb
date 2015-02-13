@@ -6,8 +6,8 @@ require 'nearest_time_zone'
 module Lita
   module Handlers
     class RubyNewbies < Handler
-      route(/(?:next meetup) (.+)/, :meetup, command: true, help: { "meet up" => "Show me the next meetup" })
-      route(/(?:next meetup)(?!.)/, :meetup_local, command: true, help: { "meet up" => "Show me the next meetup" })
+      route(/(?:next meetup) (.+)/, :meetup, command: true, help: { "next meetup location" => "Shows you the next meetup time for the location you asked for" })
+      route(/(?:next meetup)(?!.)/, :meetup_local, command: true, help: { "meet up" => "Shows you the next meetup time for your local timezone" })
 
       def meetup(response)
         location = response.matches.join("")
