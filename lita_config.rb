@@ -2,7 +2,7 @@ require './lita-rubynewbies'
 
 Lita.configure do |config|
   # The name your robot will use.
-  config.robot.name = "RubyNewbiesBot"
+  #config.robot.name = "RubyNewbiesBot"
 
   # The locale code for the language to use.
   # config.robot.locale = :en
@@ -20,7 +20,9 @@ Lita.configure do |config|
     config.adapters.slack.token = ENV['SLACK_TOKEN']
     config.robot.adapter = :slack
   else
-    config.adapters.slack.token = ""
-    config.robot.adapter = :shell
+    config.redis[:url] = ENV["REDISTOGO_URL"]
+    config.http.port = ENV["PORT"]
+    config.adapters.slack.token = ENV['SLACK_TOKEN']
+    config.robot.adapter = :slack
   end
 end

@@ -18,6 +18,13 @@ module Lita
         response.reply(msg_next_meetup(response.user.metadata["tz"],response.user.name))
       end
       
+      on :team_join, :greet
+
+      def greet(payload)
+        target = Source.new(room: "#general")
+        robot.send_message(target, "Hello #{payload[:user]}!")
+      end
+      
       
       def get_timezone(city, user)
         res = Geokit::Geocoders::GoogleGeocoder.geocode(city)

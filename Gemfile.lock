@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/sudden-break/lita-slack.git
-  revision: 57c663e08147227a0818a9861fadf2bfbfd7cf7f
+  revision: f7e4c7daaa939d9cde9ce5514be25c451c90db41
   specs:
     lita-slack (1.1.0)
       eventmachine
