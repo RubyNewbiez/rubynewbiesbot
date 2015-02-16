@@ -22,7 +22,7 @@ module Lita
 
       def greet(payload)
         target = Source.new(room: "C03B4MKPS")
-        robot.send_message(target, "Hello @#{payload[:user]} !")
+        robot.send_message(target, "Hello @#{payload[:user]}!")
       end
       
       
