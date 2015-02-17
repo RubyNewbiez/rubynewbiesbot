@@ -13,43 +13,41 @@ module Lita
         location = response.matches.join("")
         response.reply(get_timezone(location, response.user.name))
       end
-      
+
       def meetup_local(response)
         response.reply(msg_next_meetup(response.user.metadata["tz"],response.user.name))
       end
-      
+
       on :team_join, :greet
 
       def greet(payload)
         target = Source.new(room: "C03B4MKPS")
         robot.send_message(target, "Hello @#{payload[:user]} !")
       end
-      
-      
+
       def get_timezone(city, user)
         res = Geokit::Geocoders::GoogleGeocoder.geocode(city)
         timezone_name = NearestTimeZone.to(res.lat, res.lng)
         msg_next_meetup(timezone_name, user)
       end
-      
+
       def next_meetup_date
         date = Date.parse("wednesday")
         delta = date > Date.today ? 0 : 7
         date + delta
       end
-      
+
       def msg_next_meetup(city, user)
         timezone = Timezone::Zone.new :zone => city
         next_date = timezone.time_with_offset(Time.new(next_meetup_date.year, next_meetup_date.month, next_meetup_date.day, 22))
-        
         rest = next_date - timezone.time_with_offset(Time.now)
         mm, ss = rest.divmod(60)
         hh, mm = mm.divmod(60)
         dd, hh = hh.divmod(24)
-        
+
         return "Hey @#{user} our next meetup will take place on #{next_date.strftime("%F %H:%M")} (Your Timezone: #{city}). \n Thats only #{pluralize(dd,"day")}, #{pluralize(hh,"hour")} and #{pluralize(mm,"minute")} left :thumbsup:"
       end
-      
+
       def pluralize(n, singular, plural=nil)
         if n == 1
           "1 #{singular}"
@@ -59,7 +57,6 @@ module Lita
           "#{n} #{singular}s"
         end
       end
-      
     end
     Lita.register_handler(RubyNewbies)
   end

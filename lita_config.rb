@@ -12,8 +12,7 @@ Lita.configure do |config|
   # Messages at the selected level and above will be logged.
   config.robot.log_level = :info
   config.robot.admins = ["U03KRFLDS"]
-  
-  
+
   if ENV["RACK_ENV"]=="production"
     config.redis[:url] = ENV["REDISTOGO_URL"]
     config.http.port = ENV["PORT"]
